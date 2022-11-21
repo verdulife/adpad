@@ -1,95 +1,80 @@
 <script>
-	let ads = [
-		/* { type: 'video/mp4', src: 'https://www.facturasgratis.ga/no-bills.mp4' } */
-	];
+	import { shuffleArray } from '$lib/utils';
+
+	export let data;
+	/* const ads = shuffleArray(data.db); */
+	const ads = data.db;
+	console.log(ads);
 
 	let isImage = false;
 	let isVideo = false;
 	let src, fullscreenEl;
 
-	function uploadFiles() {
-		const input = document.createElement('input');
-		input.type = 'file';
-		input.accept = 'video/mp4,image/jpeg';
-		input.multiple = true;
-
-		input.click();
-
-		input.onchange = () => {
-			const files = Array.from(input.files);
-			const shuffledFiles = files.sort(() => 0.5 - Math.random());
-
-			shuffledFiles.forEach((file) => {
-				const { type } = file;
-				const reader = new FileReader();
-				reader.readAsDataURL(file);
-				reader.onload = () => {
-					ads = [...ads, { type, src: reader.result }];
-				};
-			});
-		};
-	}
-
 	function openFullscreen(elem) {
-		if (elem.requestFullscreen) {
-			elem.requestFullscreen();
-		} else if (elem.webkitRequestFullscreen) {
-			/* Safari */
-			elem.webkitRequestFullscreen();
-		} else if (elem.msRequestFullscreen) {
-			/* IE11 */
-			elem.msRequestFullscreen();
-		}
+		if (elem.requestFullscreen) elem.requestFullscreen();
+		else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+		else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
 	}
 
-	function startAds() {
+	/* function startAds() {
 		if (ads.length === 0) return alert('No hay publicidad que proyectar');
-		openFullscreen(fullscreenEl);
+
 		let counter = 0;
+		openFullscreen(fullscreenEl);
 
 		if (counter + 1 > ads.length) counter = 0;
 		const currentAd = ads[counter];
 
-		if (currentAd.type.includes('image')) {
+		if (currentAd.ad_type.includes('image')) {
 			isImage = true;
 			isVideo = false;
 		}
-		if (currentAd.type.includes('video')) {
+		if (currentAd.ad_type.includes('video')) {
 			isVideo = true;
 			isImage = false;
 		}
 
-		src = currentAd.src;
+		src = currentAd.ad_URL;
 		counter++;
 
 		setInterval(() => {
 			if (counter + 1 > ads.length) counter = 0;
 			const currentAd = ads[counter];
 
-			if (currentAd.type.includes('image')) {
+			if (currentAd.ad_type.includes('image')) {
 				isImage = true;
 				isVideo = false;
 			}
-			if (currentAd.type.includes('video')) {
+			if (currentAd.ad_type.includes('video')) {
 				isVideo = true;
 				isImage = false;
 			}
 
-			src = currentAd.src;
+			src = currentAd.ad_URL;
 			counter++;
 		}, 7000);
+	} */
+
+	function screening(index = 0) {
+		if (ads.length === 0) return alert('No hay publicidad que proyectar');
+
+		/* openFullscreen(fullscreenEl); */
+
+		const lastAdIndex = ads.length - 1;
+		let currentIndex = index < lastAdIndex ? index : 0;
+
+		isImage = ads[currentIndex].ad_type.includes('image');
+		isVideo = ads[currentIndex].ad_type.includes('video');
+		src = ads[currentIndex];
+
+		setInterval(screening(currentIndex++), ads[currentIndex].paid_duration);
 	}
 </script>
 
 <section class="viewport row nowrap">
-	<article class="col fcenter grow yfill">
-		<h1>Subir publicidad</h1>
-		<button class="pri round" on:click={uploadFiles}>SUBIR ARCHIVOS</button>
-	</article>
-
-	<article class="col fcenter grow yfill">
+	<article class="col fcenter fill">
 		<h1>Iniciar proyeccion</h1>
-		<button class="pri round" on:click={startAds}>INICIAR</button>
+		<button class="pri round" on:click={screening}>INICIAR</button>
 	</article>
 </section>
 

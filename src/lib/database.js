@@ -16,8 +16,7 @@ export const db = [
 		created_at: '2022-11-18T16:36:01.052Z',
 		valid_until: '2022-12-18T16:36:01.052Z',
 		ad_URL: 'https://i.ibb.co/Wg21YT0/i-Pad-Pro-11-5.jpg',
-		ad_tags: ['service', 'web', 'seo', 'marketing', 'online'],
-		business_tags: ['marketing', 'design', 'seo']
+		ad_tags: ['service', 'web', 'seo', 'marketing', 'online']
 	},
 	{
 		id: 2,
@@ -36,8 +35,7 @@ export const db = [
 		created_at: '2022-11-18T16:36:01.052Z',
 		valid_until: '2022-12-18T16:36:01.052Z',
 		ad_URL: 'https://i.imgur.com/cStxSz7.mp4',
-		ad_tags: ['product', 'food', 'sushi', 'discount'],
-		business_tags: ['product', 'food', 'sushi', 'restaurant']
+		ad_tags: ['product', 'food', 'sushi', 'discount']
 	},
 	{
 		id: 3,
@@ -56,8 +54,7 @@ export const db = [
 		created_at: '2022-11-18T16:36:01.052Z',
 		valid_until: '2022-12-18T16:36:01.052Z',
 		ad_URL: 'https://i.ibb.co/J5xy6vB/i-Pad-Pro-11-4.jpg',
-		ad_tags: ['service', 'rent', 'car', 'electric', 'eco'],
-		business_tags: ['reting', 'car', 'electric']
+		ad_tags: ['service', 'rent', 'car', 'electric', 'eco']
 	},
 	{
 		id: 4,
@@ -76,7 +73,6 @@ export const db = [
 		created_at: '2022-11-18T16:36:01.052Z',
 		valid_until: '2022-12-18T16:36:01.052Z',
 		ad_URL: 'https://i.ibb.co/Mp5Bjf9/i-Pad-Pro-11-6.jpg',
-		ad_tags: ['service', 'sport', 'kids', 'club'],
-		business_tags: ['service', 'sport', 'club']
+		ad_tags: ['service', 'sport', 'kids', 'club']
 	}
 ];
